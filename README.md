@@ -11,4 +11,6 @@ This project demonstrates:
 - File integrity hashing
 - Dictionary-based password strength checking
 
+Use your wordlists to crack
+
 Educational & offline use only.

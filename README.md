@@ -14,6 +14,6 @@ This project demonstrates:
 How to use:
 - command: python3 sanhasher.py
 
-Use your wordlists to crack
+Use your wordlists to crack or use a sample wordlist to do sample checking.....
 
 Educational & offline use only.

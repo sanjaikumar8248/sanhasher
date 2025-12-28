@@ -5,7 +5,7 @@ Menu:
 1. Password Hash Generator
 2. File Hash Generator
 3. Password Hash Checker/Decrypter
-99. Exit
+0. Exit
 
 
 """
@@ -118,7 +118,7 @@ def main():
             print("1. Password Hash Generator")
             print("2. File Hash Generator")
             print("3. Password Hash Decrypter")
-            print("99. Exit")
+            print("0. Exit")
             print("------------------------------")
             ch = input("Enter your choice: ").strip()
             if ch == '1':

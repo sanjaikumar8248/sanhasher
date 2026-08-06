@@ -17,3 +17,11 @@ How to use:
 Use your wordlists to crack or use a sample wordlist to do sample checking.....
 
 Educational & offline use only.
+
+"C:\Program Files\Tenable\Nessus\nessuscli.exe" lsuser
+
+sudo /opt/nessus/sbin/nessuscli lsuser
+
+"C:\Program Files\Tenable\Nessus\nessuscli.exe" chpasswd admin
+
+

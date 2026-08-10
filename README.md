@@ -57,4 +57,127 @@ hashcat -m 1000 -a 0 victim.txt /usr/share/wordlists/rockyou.txt
 
 hashcat -m 1000 -a 0 victim.txt --show 
 
+EXPERIMENT NO 10 
+Title 
+Installation, Configuration, and Local Source Code Scanning using SonarQube and 
+SonarScanner on Windows 
+Aim 
+To install and configure SonarQube and SonarScanner on Windows, set environment variables, 
+create a local project, and perform static code analysis. 
+Procedure: 
+Step 1 — Install Java (OpenJDK 21) 
+ Download Java - Download OpenJDK 21 from: 
+https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html
+ Install Java 
+1. Run the installer  
+2. Click Next  
+3. Complete installation  
+ Verify Java Installation 
+Open Command Prompt: java –version 
+Step 2 — Configure JAVA_HOME Environment Variable 
+Locate Java Installation Path 
+Example: C:\Program Files\Java\jdk-21 
+Set JAVA_HOME 
+Open Environment Variables 
+1. Press: Windows + R 
+2. Type: sysdm.cpl 
+3. Open: Advanced → Environment Variables 
+Create JAVA_HOME Variable 
+Under System Variables: 
+Click: New 
+Add: 
+Variable 
+Value 
+JAVA_HOME C:\Program Files\Java\jdk-17 
+Edit Path Variable 
+Under System Variables: 
+Select: Path → Edit → New 
+Add: %JAVA_HOME%\bin 
+Step 3 — Download SonarQube 
+Download Community Edition from: https://www.sonarsource.com/products/sonarqube/downloads/
+Step 4 — Extract SonarQube 
+1. Extract ZIP file using 7-Zip or WinRAR  
+2. Extract to:  
+C:\SonarQube 
+Example Directory: C:\SonarQube\sonarqube-25.x 
+Step 5 — Start SonarQube Server 
+Navigate to: C:\SonarQube\sonarqube-25.x\bin\windows-x86-64 
+Run: StartSonar.bat 
+A terminal window opens. 
+Wait until message appears: 
+SonarQube is operational 
+Step 6 — Access SonarQube Dashboard 
+Open Browser: http://localhost:9000 
+Default Login Credentials 
+Username Password 
+admin Admin 
+After login: 
+Change the default password. 
+Step 7 — Download SonarScanner 
+Download from: https://docs.sonarsource.com/sonarqube-server/analyzing-source
+code/scanners/sonarscanner
+Step 8 — Extract SonarScanner 
+Extract ZIP file to: C:\sonar-scanner 
+Step 9 — Configure SonarScanner Environment Variables 
+Open Environment Variables 
+Press: Windows + R 
+Type: sysdm.cpl 
+Open: Advanced → Environment Variables 
+Create SONAR_SCANNER_HOME 
+Click:New 
+Add: 
+Variable 
+SONAR_SCANNER_HOME C:\sonar-scanner 
+Value 
+Edit Path Variable 
+Add: %SONAR_SCANNER_HOME%\bin 
+Step 10 — Verify SonarScanner Installation 
+Open New Command Prompt: sonar-scanner -version 
+Step 11 — Generate SonarQube Authentication Token 
+Login to SonarQube Dashboard. 
+Navigate: Administration → Security → Users → Tokens 
+Generate Token:  
+Example: student-token 
+Copy and Save the Token. 
+Step 12 — Create Sample Local Project 
+Create Folder: C:\sonar-project 
+(Create Python File 
+Create: 
+app.py 
+Add Sample Vulnerable Code: 
+password = "admin123" 
+def login(user): 
+if user == "admin": 
+print("Welcome Admin") 
+login("admin"))   
+or (Paste the project file you want to scan)  C:\sonar-project 
+Step 13 — Create SonarScanner Configuration File 
+Inside Project Folder: 
+Create file: sonar-project.properties 
+Add: 
+sonar.projectKey=Project Name (Replace your name) 
+sonar.projectName=Project Name (Replace your name) 
+sonar.projectVersion=1.0 
+sonar.sources=. 
+sonar.host.url=http://127.0.0.1:9000 
+sonar.login= YOUR_GENERATED_TOKEN 
+Replace: 
+YOUR_GENERATED_TOKEN 
+with actual token. 
+Step 14 — Run SonarScanner 
+Open Command Prompt. 
+Navigate to Project Directory:  C:\sonar-project 
+Run: sonar-scanner 
+Step 15 — View Scan Report 
+Open Browser: http://localhost:9000 
+Navigate to: Projects → Local Project 
+Analyze: 
+ Bugs  
+ Vulnerabilities  
+ Code Smells  
+ Security Hotspots  
+ Duplicated Code
+
+
+
 

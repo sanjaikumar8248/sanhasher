@@ -57,7 +57,7 @@ hashcat -m 1000 -a 0 victim.txt /usr/share/wordlists/rockyou.txt
 
 hashcat -m 1000 -a 0 victim.txt --show 
 
-EXPERIMENT NO 10 
+11..............................................................................................
 Title 
 Installation, Configuration, and Local Source Code Scanning using SonarQube and 
 SonarScanner on Windows 
@@ -178,6 +178,27 @@ Analyze:
  Security Hotspots  
  Duplicated Code
 
-
+10......................................................................................
+Step 9: Verify Firewall Configuration 
+Open Command Prompt. 
+View firewall profiles: 
+netsh advfirewall show allprofiles 
+View firewall rules: 
+netsh advfirewall firewall show rule name=all 
+Step 10: Test Blocked Port 
+Use a browser or another test application to verify that the blocked port cannot be accessed. 
+If the Telnet Client is installed, test the blocked port: 
+telnet localhost 21 
+The connection should be blocked according to the configured firewall rule. 
+Part E – Enable Firewall Logging 
+Step 11: Configure Firewall Logging 
+1. Open Windows Defender Firewall with Advanced Security. 
+2. Right-click Windows Defender Firewall with Advanced Security on Local Computer. 
+3. Select Properties. 
+4. Under each profile (Domain, Private, Public), click Customize in the Logging section. 
+5. Enable logging for dropped packets and successful connections. 
+6. Apply the changes. 
+Default log file location: 
+C:\Windows\System32\LogFiles\Firewall\pfirewall.log
 
 

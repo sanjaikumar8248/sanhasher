@@ -201,4 +201,67 @@ Step 11: Configure Firewall Logging
 Default log file location: 
 C:\Windows\System32\LogFiles\Firewall\pfirewall.log
 
+2.................................................................................
+Part B – Kali Linux Hardening 
+Step 1: Update Operating System 
+Update package repositories: 
+sudo apt update 
+Upgrade installed packages: 
+sudo apt full-upgrade -y 
+Step 2: Create a Non-Root Administrative User 
+Create user: sudoadduser analyst 
+Grant sudo privileges: sudo usermod –aG sudo analyst 
+Step 3: Disable Direct Root Login 
+Lock root account: sudo passwd -l root 
+Verify: sudo passwd -S root 
+Expected Output: 
+Root L 
+(L = Locked) 
+Step 4: Configure UFW Firewall 
+Install firewall: sudo apt install ufw -y 
+Set default policies: 
+ sudo ufw default deny incoming 
+ sudo ufw default allow outgoing 
+Allow SSH service: sudo ufw allow 22/tcp 
+Enable firewall: sudo ufw enable 
+Step 5: Disable Unnecessary Services 
+List running services: sudo systemctl list-units –type=service –state=running 
+Disable unused services: 
+ sudo systemctl disable –now apache2 
+ sudo systemctl disable –now postgresql 
+Step 6: Secure SSH Configuration 
+Install SSH server: sudo apt install openssh-server -y 
+Enable service: sudosystemctl enable –now ssh 
+Modify: 
+ Port 2222 
+ Permit Root Login no 
+ Password Authentication no 
+ Allow Users analyst 
+Step 7: Configure AppArmor 
+Install AppArmor: sudo apt install apparmor apparmor-utils -y 
+Enable service: sudosystemctl enable –now apparmor 
+Enforce all profiles: 
+sudo aa-enforce /etc/apparmor.d/* 
+Step 8: Enable Audit Logging 
+Install Audit Framework: sudo apt install auditd audispd-plugins -y 
+Enable service: sudo systemctl enable –now auditd 
+Audit logs location: 
+/var/log/audit/audit.log 
+View logs: sudoausearch -ts today 
+Step 9: Configure Logwatch 
+Install Logwatch: sudo apt install logwatch -y 
+Generate report: sudo logwatch –detail High –range today –service All 
+Save report: sudo logwatch –detail High –range today –output file –filename report.txt 
+Step 10: Verify Security Configuration 
+Run the following checks: 
+Firewall 
+sudo ufw status 
+SSH 
+sudo systemctl status ssh 
+AppArmor 
+sudo aa-status 
+Auditd 
+sudo systemctl status auditd 
+Logwatch 
+sudo logwatch –range today
 
